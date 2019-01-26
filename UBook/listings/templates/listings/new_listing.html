@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+ 	  <meta charset="utf-8">
+    <title>UBook</title>
+    <link rel="icon" href="/static/resources/uoft_crest.png">
+    <link href="https://fonts.googleapis.com/css?family=Chakra+Petch" rel="stylesheet">
+    {%load static%}
+
+    <link rel="stylesheet" type="text/css" href="/static/styles/nav.css">
+    <link rel="stylesheet" type="text/css" href="/static/styles/profile.css">
+
+    <script src="/static/js/nav.js"></script>
+  </head>
+  <body>
+
+      <!-- navbar-->
+      <nav id="navbar">
+        <a href="/listings/"> <div id="logo">UBook</div> </a>
+        <div id="navbar-button-container">
+          <div>
+            <a class="navbar-button" href="/listings/">find textbooks</a>
+          </div>
+          <div>
+            <a class="navbar-button" href="/new_listing">create a listing</a>
+          </div>
+          <div id="user-dropdown">
+            <a id="user-dropdown-button"class="navbar-button" onclick="dropDown()">{{ user.username }} ▾</a>
+            <div id="dropdown-content">
+              <a href="/active_listings">my active listings</a>
+              <a href="/inactive_listings">my inactive listings</a>
+              <a href="/profile">edit profile</a>
+              <a href="/logout/">log out</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+    <!-- navigation menu container -->
+    <div id="nav-container" class="big-container">
+      <ul>
+        <li> <a href="/profile"> Your Profile </a></li>
+        <li> <a href="/active_listings"> Your Active Listings </a></li>
+        <li> <a href="/inactive_listings"> Your Sold Listings </a></li>
+      </ul>
+    </div>
+
+    <div id="create-container">
+      <a href="/new_listing"> <button id="create-button" class="button"> Create A New Listing </button> </a>
+    </div>
+
+ <form action="/new_listing/" method="POST">
+  {% csrf_token %}
+  <div id="main-container" class="big-container">
+      <div id="title-container">
+        Create A New Listing
+      </div>
+
+      <div class = "bundle">
+        <label>(Only for bundles)</label>
+        <div class="bundletitle">
+               <span  class="bold edit-bundletitle" >Listing Title: </span>
+               <input id="listing_title" type="text" name="listing_title" class = "input edit-bundletitle-input">
+            </div>
+            <div class="bundledescription">
+               <span  class="bold edit-bundledescription">Listing Description: </span>
+               <input id="listing_desc"  type="text" name="listing_desc" class = "input edit-bundledescription-input">
+            </div>
+            <br>
+             <div class="price">
+               <span class="bold edit-price">Listing Price: </span>
+               <input type="text" name="listing_price" class = "input edit-price-input">
+             </div>
+             <hr>
+      </div>
+      <div class="edit">
+          <strong><u><span class="bold textbook" >Textbook 1: </span></u></strong>
+          <div class="title">
+               <span  class="bold edit-title" >Title: </span>
+               <input  type="text" name="title1" class = "input edit-title-input">
+            </div>
+            <div class="author">
+               <span  class="bold edit-author">Author: </span>
+               <input id="author1" type="text" name="author1" class = "input edit-author-input">
+            </div>
+            <div class="course">
+               <span  class="bold edit-course">Course: </span>
+               <input id="class1" type="text" name="course1" class = "input edit-course-input">
+            </div>
+            <div class="condition">
+               <span  class="bold edit-condition">Condition: </span>
+              <input id="condition-slider1" name="condition1" type="range" min="0" max="20" value="0">
+              <strong><span id="slider-value1">0</span></strong>
+            </div>
+            <div class="image">
+               <span  class="bold edit-image">Image URL: </span>
+               <input id="image1" type="text" name="image1" class = "input edit-image-input">
+            </div>
+            <div class="description">
+               <span class="bold edit-description">Description: </span>
+               <input id="description1" type="text" name="description1" class = "input edit-description-input">
+            </div>
+             </div>
+
+               <div class = "buttons">
+                   <input type="hidden" value="peanut" name="listing_to_mark">
+                   <button class="mark-sold-listing listing-action button" type="submit"> Submit </button>
+               <button id="add_textbook_button" class="add-book listing-action button" type="button"> Add another book
+               </button>
+
+               </div>
+
+           </div>
+   </form>
+
+       <script src="/static/js/new_listing.js"></script>
+
+  </body>
+</html>

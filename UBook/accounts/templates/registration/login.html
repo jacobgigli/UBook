@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+        <title>UBook | Login</title>
+        {%load static%}
+
+        <link rel="icon" href="/static/resources/uoft_crest.png">
+        <link href="https://fonts.googleapis.com/css?family=Chakra+Petch" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static '/styles/index.css' %}">
+        <style>
+            body {
+                background-image: url({% static '/resources/login_background.png' %});
+            }
+        </style>
+    </head>
+
+    <body>
+
+      <!--- UofT Crest at top of page. --->
+      <div id="image-container">
+        <img id="crest" src="/static/resources/uoft_crest.png">
+      </div>
+
+      <!--- First part of title. --->
+      <div id="title-container-left" class="title-container">
+        <span class="grey title-text">U</span>
+      </div>
+
+      <!--- Last part of title. --->
+      <div id="title-container-right" class="title-container">
+        <span class="blue title-text">Book</span>
+      </div>
+
+      <!--- Login subtitle. --->
+      <div id="subtitle-container-right">
+       <span class="blue subtitle-text subtitle-text-right">login</span>
+      </div>
+
+      <!--- Login page text and boxes. --->
+      <div id="subtitle-container-left">
+        <span class="grey subtitle-text subtitle-text-left">
+          <form method="post" action="/login/">
+              {% csrf_token %}
+
+              <br>
+
+              <div>
+                  <td><label for="id_username">username:</label></td>
+                  <td><input type="text" name="username" id="id_username" autofocus required></td>
+              </div>
+              <div>
+                  <td><label for="id_password">password:</label></td>
+                  <td><input type="password" name="password" id="id_password" required></td>
+              </div>
+
+              <div id="button-container-left">
+                <a href="/login/">
+                    <button id="login" class="button button-left grey">log in</button>
+                </a>
+              </div>
+          </form>
+        </span>
+
+        <br>
+
+        <!--- Reegister button. --->
+        <a href="/register/">
+          <button id="register" class="button button-left grey">No account yet? Register here.</button>
+        </a>
+
+        <!--- Error messages. --->
+        {% if form.errors %}
+            <p class="error"><strong> Your username and password didn't match. Please try again.</strong></p>
+        {% endif %}
+
+        {% if message %}
+            <p class="grey"><strong>{{ message }}</strong></p>
+        {% endif %}
+      </div>
+
+    </body>
+</html>
